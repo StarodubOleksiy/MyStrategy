@@ -7,6 +7,10 @@ public class Main {
 
     private static long end;
 
+    private static boolean printArray = true;
+
+    private static boolean sortUsingBubleAlgorithm = true;
+
     private static void setTime() {
         start = System.currentTimeMillis();
     }
@@ -30,10 +34,12 @@ public class Main {
 
     public static void display(String sortName, int[] array)             // displays array contents
     {
-        System.out.print(sortName + "= ");
-        for (int j = 0; j < array.length; j++)    // for each element,
-            System.out.print(array[j] + " ");  // display it
-        System.out.println("");
+        if(printArray) {
+            System.out.print(sortName + "= ");
+            for (int j = 0; j < array.length; j++)    // for each element,
+                System.out.print(array[j] + " ");  // display it
+            System.out.println("");
+        }
     }
 
     public static void main(String[] args) {
@@ -51,13 +57,15 @@ public class Main {
         secondSortShell.sort(arrayToShellSort);
         displayTime();
         display("Array after shell sort", arrayToShellSort);
-        SortStrategy thirdSortBuble = new BubleSort();
-        int[] arrayToBubleSort = createNewArray();
-        display("Array before buble sort", arrayToBubleSort);
-        setTime();
-        thirdSortBuble.sort(arrayToBubleSort);
-        displayTime();
-        display("Array after buble sort", arrayToBubleSort);
+        if(sortUsingBubleAlgorithm) {
+            SortStrategy thirdSortBuble = new BubleSort();
+            int[] arrayToBubleSort = createNewArray();
+            display("Array before buble sort", arrayToBubleSort);
+            setTime();
+            thirdSortBuble.sort(arrayToBubleSort);
+            displayTime();
+            display("Array after buble sort", arrayToBubleSort);
+        }
         SortStrategy fourthSortInsert = new InsertSort();
         int[] arrayToInsertSort = createNewArray();
         display("Array before insert sort", arrayToInsertSort);
